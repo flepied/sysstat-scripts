@@ -1,0 +1,60 @@
+# -*- shell-script -*-
+#---------------------------------------------------------------
+# Module          : sysstat-scripts
+# File            : commons
+# Version         : $Id$
+# Author          : Frederic Lepied
+# Created On      : Fri Jun 30 07:24:12 2006
+# Purpose         : 
+#---------------------------------------------------------------
+
+# command arguments handling
+
+if [ $# = 0 ]; then
+    echo "usage: $0 <file> [<png file>]" 1>&2
+    exit 1
+fi
+
+sarfile=$1
+pngfile=$2
+
+# sanity checks
+
+if ! type -p sadf > /dev/null; then
+    echo "sadf not found. Correct your path" 1>&2
+    exit 1
+fi
+
+if ! type -p gnuplot > /dev/null; then
+    echo "gnuplot not found. Correct your path" 1>&2
+    exit 1
+fi
+
+# for gnuplot:
+
+common="set timefmt \"%Y-%m-%d %H:%M:%S UTC\"
+set xdata time
+set xlabel \"Time\"
+set datafile separator \";\""
+
+if [ -n "$pngfile" ]; then
+    terminal="set terminal png
+set output \"$pngfile\""
+    pause=
+else
+    terminal=
+    pause="pause mouse"
+fi
+
+# temp files creation
+
+temp2=`mktemp`
+temp3=`mktemp`
+
+clean() {
+    rm -f $temp2 $temp3
+}
+
+trap clean 0
+
+# commons ends here

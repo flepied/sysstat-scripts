@@ -12,7 +12,7 @@ set -e
 
 . `dirname $0`/commons
 
-sadf -d -- -B $sarfile > $temp2
+sadf -d -- -B $sarfile | $filter > $temp2
 
 cat > $temp3 <<EOF
 $common
@@ -25,4 +25,4 @@ EOF
 
 gnuplot $temp3
 
-# io.sh ends here
+# paging.sh ends here

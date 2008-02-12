@@ -12,7 +12,7 @@ set -e
 
 . `dirname $0`/commons
 
-sadf -d -- -b $sarfile > $temp2
+sadf -d -- -b $sarfile | $filter > $temp2
 
 cat > $temp3 <<EOF
 $common

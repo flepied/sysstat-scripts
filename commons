@@ -18,6 +18,9 @@ fi
 sarfile=$1
 pngfile=$2
 
+dir=`dirname $0`
+filter="$dir/count.py 2"
+
 # sanity checks
 
 if ! type -p sadf > /dev/null; then
@@ -32,9 +35,7 @@ fi
 
 # for gnuplot:
 
-common="set timefmt \"%Y-%m-%d %H:%M:%S UTC\"
-set xdata time
-set xlabel \"Time\"
+common="set xlabel \"Time\"
 set datafile separator \";\""
 
 if [ -n "$pngfile" ]; then

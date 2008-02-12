@@ -17,7 +17,7 @@ sadf -d -- -n ALL $sarfile | $filter > $temp2
 cat > $temp3 <<EOF
 $common
 set title "Network"
-set ylabel "Packets/s"
+set ylabel "Bytes/s"
 $terminal
 EOF
 
@@ -27,7 +27,7 @@ set `head -50 $temp2 | cut -d \; -f 4 | grep '^eth' | sort | uniq`
 
 while [ -n "$*" ]; do
     ifc=$1
-    echo -n " \"< grep $ifc $temp2\" using 3:5 with linespoints title \"$ifc rxpck/s\", \"< grep $ifc $temp2\" using 3:6 with linespoints title \"$ifc txpck/s\"" >> $temp3
+    echo -n " \"< grep $ifc $temp2\" using 3:7 with linespoints title \"$ifc rxbyt/s\",  \"< grep $ifc $temp2\" using 3:8 with linespoints title \"$ifc txbyt/s\" " >> $temp3
     shift
     if [ -n "$*" ]; then
 	echo -n "," >> $temp3
@@ -41,4 +41,4 @@ EOF
 
 gnuplot $temp3
 
-# net.sh ends here
+# net2.sh ends here

@@ -1,2 +1,2 @@
 dist:
-	cd ${HOME}; tar zcvf sysstat-scripts.tgz work/sysstat-scripts/*.sh work/sysstat-scripts/{commons,count.py,Makefile} bin/archive-perfmon.sh bin/gen.sh bin/perfmon.sh
+	cd ..; tar zcvf sysstat-scripts.tgz sysstat-scripts/*.sh sysstat-scripts/commons sysstat-scripts/count.py sysstat-scripts/Makefile sysstat-scripts/bin/*.sh sysstat-scripts/bin/*.py

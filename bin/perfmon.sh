@@ -145,7 +145,7 @@ else
 fi
 
 rm -f $TARGETDIR/sar_data.dat
-sar -bBqrRuvw -P ALL -n DEV -n EDEV -I SUM -I XALL -o $TARGETDIR/sar_data.dat 1 $CONTINUOUS >& $TARGETDIR/sar.out &
+sar -bBqrRuvwS -P ALL -n DEV -n EDEV -I SUM -I XALL -o $TARGETDIR/sar_data.dat 1 $CONTINUOUS >& $TARGETDIR/sar.out &
 SARPID=$!
 
 rm -f $TARGETDIR/iostat_data.dat

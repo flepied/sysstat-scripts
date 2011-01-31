@@ -22,13 +22,20 @@ dir=`dirname $0`
 filter="$dir/count.py 2"
 
 # sanity checks
-for c in sadf gnuplot; do
+for c in sar sadf gnuplot; do
     if ! type $c > /dev/null; then
 	echo "$c not found. Correct your path" 1>&2
 	echo $PATH
 	exit 1
     fi
 done
+
+# check sar version
+if sar -V 2>&1|fgrep -q 'version 9'; then
+    V9=1
+else
+    V9=
+fi
 
 common="set xlabel \"Time\"
 set datafile separator \";\""

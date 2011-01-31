@@ -12,7 +12,13 @@ set -e
 
 . `dirname $0`/commons
 
-sadf -d -- -c $sarfile | $filter > $temp2
+if [ -n "$V9" ]; then
+    OPT=-w
+else
+    OPT=-c
+fi
+
+sadf -d -- $OPT $sarfile | $filter > $temp2
 
 cat > $temp3 <<EOF
 $common

@@ -140,12 +140,14 @@ fi
 # start sar and iostat
 if sar -V 2>&1|fgrep -q 'version 9'; then
     CONTINUOUS=
+    P=w
 else
     CONTINUOUS=0
+    P=c
 fi
 
 rm -f $TARGETDIR/sar_data.dat
-sar -bBqrRuvwS -P ALL -n DEV -n EDEV -I SUM -I XALL -o $TARGETDIR/sar_data.dat 1 $CONTINUOUS >& $TARGETDIR/sar.out &
+sar -bBqrRuv${P}W -P ALL -n DEV -n EDEV -I SUM -I XALL -o $TARGETDIR/sar_data.dat 1 $CONTINUOUS >& $TARGETDIR/sar.out &
 SARPID=$!
 
 rm -f $TARGETDIR/iostat_data.dat

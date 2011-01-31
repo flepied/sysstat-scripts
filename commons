@@ -23,7 +23,7 @@ filter="$dir/count.py 2"
 
 # sanity checks
 for c in sadf gnuplot; do
-    if ! type -p $c > /dev/null; then
+    if ! type $c > /dev/null; then
 	echo "$c not found. Correct your path" 1>&2
 	echo $PATH
 	exit 1
